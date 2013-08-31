@@ -1,0 +1,31 @@
+	<!--
+	 footer
+	-->
+	<div class="container">
+		<footer>
+			<hr>
+			<p class="muted">Table Manager - Sarrailh Rémi Gpl v3 (c) 2013 <br> No Application</p>
+		</footer>
+	</div>
+
+	{if="$lang != 'default'"}
+	<script {$lang_file} ></script>
+	
+	{/if}
+	<script {$lang_handler} ></script>
+	<script {$jquery} ></script>
+	
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+ 	{if="$tables == 'true'"}
+	 <script {$tables_link}></script>
+	 <script {$image_handler}></script>
+	{/if}
+
+	<script {$alert_handler}></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+{include="header"}
+
+<!--
+ index
+-->
+<!--Body content-->
+
+<style>
+.off {background-color: #000;}
+
+.white {background-color: #fff;}
+
+.red {background-color: #f00;}
+
+.green {background-color: #0f0;}
+
+.blue {background-color: #00f;}
+
+.yellow {background-color: #ff0;}
+
+.pink {background-color: #F6A8B6;}
+
+.cyan {background-color: #05EDFF;}
+
+
+
+</style>
+
+	<div class="container">
+		
+
+		<table class="table table-striped  table-bordered">
+			<tr>
+			<th>Name</th>
+			<th>Off</th><th>White</th><th>Red</th><th>Green</th><th>Blue</th><th>Yellow</th><th>Pink</th><th>Cyan</th>
+			</tr>
+			{loop="leds_value"}
+			<tr>
+			<td><h1>{$value.name}<sup><code>{$value.code}</code></sup></h1></td>
+			<td id="-0-{$value.code}"   class="color_change off"></td>
+			<td id="-1-{$value.code}" class="color_change white"></td>
+			<td id="-2-{$value.code}"   class="color_change red"></td>
+			<td id="-3-{$value.code}" class="color_change green"></td>
+			<td id="-4-{$value.code}"  class="color_change blue"></td>
+			<td id="-5-{$value.code}"  class="color_change yellow"></td>
+			<td id="-6-{$value.code}"  class="color_change pink"></td>
+			<td id="-7-{$value.code}"  class="color_change cyan"></td>		
+			</tr>
+			{/loop}
+			</table>
+	 	</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+$(".color_change").click(function() {
+command = this.id.split("-");
+color = command[1];
+code = command[2];
+$.ajax({
+			type: "POST",
+			url: "actions.php",
+			data: { code:code, color: color}
+			}).done(function( html ) {
+			$('#alert_zone').html("<div class='alert alert-success fade in'><button type='button' class='close' data-dismiss='alert'>&times;</button><span id='alert-text'>"+html+"</span></div>");
+});
+window.setTimeout(function() { $(".alert").alert('close'); }, 5000);
+
+});
+
+
+
+</script>
+ 	
+{include="footer"}
